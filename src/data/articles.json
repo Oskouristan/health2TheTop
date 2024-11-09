@@ -1,0 +1,78 @@
+[
+    {
+        "id": 1,
+        "date": "2024-10-31",
+        "image_url": "https://slidescorner.com/wp-content/uploads/2023/03/03-6-1024x576.jpg",
+        "image_fond" : "https://slidescorner.com/wp-content/uploads/2023/03/03-6-1024x576.jpg",
+        "texte": "La vitamine C, ou acide ascorbique, est une vitamine hydrosoluble essentielle...",
+        "titre": "Choses que vous devez savoir sur la vitamine B1",
+        "auteur": "Myself",
+        "categorie": "Nutrition",
+        "tags": ["vitamine", "santé", "nutrition"],
+        "slug": "vitamine-b1",
+        "resume": "Tout ce que vous devez savoir sur la vitamine B1 et ses bienfaits.",
+        "statut": "publié",
+        "temps_de_lecture": "5 minutes"
+    },
+    {
+        "id": 2,
+        "date": "2024-11-01",
+        "image_url": "https://nutriandco.com/img/cms/contenu/vitamine-c-visage.jpg",
+        "image_fond" : "https://nutriandco.com/img/cms/contenu/vitamine-c-visage.jpg",
+        "texte": "La vitamine C, ou acide ascorbique, est une vitamine hydrosoluble essentielle...",
+        "titre": "Les bienfaits de la vitamine C",
+        "auteur": "Marie Curie",
+        "categorie": "Santé",
+        "tags": ["vitamine", "immunité"],
+        "slug": "bienfaits-vitamine-c",
+        "resume": "Découvrez les incroyables bienfaits de la vitamine C sur votre santé.",
+        "statut": "publié",
+        "temps_de_lecture": "4 minutes"
+    },
+    {
+        "id": 3,
+        "date": "2024-11-06",
+        "image_url": "https://cdn.futura-sciences.com/cdn-cgi/image/width=1920,quality=50,format=auto/sources/images/probiotique.jpg",
+        "image_fond" : "https://cdn.futura-sciences.com/cdn-cgi/image/width=1920,quality=50,format=auto/sources/images/probiotique.jpg",
+        "texte": "Votre microbiote intestinal, cet ensemble complexe de micro-organismes vivant dans votre système digestif, joue un rôle crucial dans votre santé générale. Au-delà de la digestion, il influence tout, de votre métabolisme à votre système immunitaire et même votre humeur. Voici quelques aspects méconnus des probiotiques, ces bactéries bénéfiques qui aident à maintenir ce système en bonne santé.",
+        "titre": "Choses que vous ne saviez pas sur votre microbiote",
+        "auteur": "Myself",
+        "categorie": "Santé",
+        "tags": ["microbiote", "probiotiques", "santé"],
+        "slug": "probiotiques-microbiote",
+        "resume": "Explorez des faits surprenants sur les probiotiques et leur impact sur votre microbiote intestinal.",
+        "statut": "publié",
+        "temps_de_lecture": "5 minutes"
+    },
+    {
+        "id": 4,
+        "date": "2024-11-06",
+        "image_url" : "https://www.corso-saunamanufaktur.com/wp-content/uploads/2020/08/Sauna-zuhause-Design-Altholz-corso-1-2048x1170.jpg",
+        "image_fond": "https://media.architecturaldigest.com/photos/62322c843a2dd32dd99d5600/16:9/w_2240,c_limit/SP121818_Baths_053.jpg",
+        "texte": "La santé holistique ne se limite pas à l'absence de maladie, elle englobe le bien-être physique, mental et émotionnel. Intégrer nutrition, exercice, et sauna dans votre routine peut vous aider à atteindre un équilibre optimal. Découvrez comment ces éléments interagissent pour soutenir une vie saine : une alimentation équilibrée, une activité physique régulière et des séances de sauna pour la détente et la récupération.",
+        "titre": "Santé Holistique : Intégrer Nutrition, Exercice et Sauna dans un Plan de Bien-être Total",
+        "auteur": "Myself",
+        "categorie": "Santé",
+        "tags": ["nutrition", "exercice", "sauna", "bien-être", "santé holistique"],
+        "slug": "sante-holistique-bien-etre-total",
+        "resume": "Explorez comment l'intégration de la nutrition, de l'exercice et du sauna peut transformer votre santé et augmenter votre bien-être.",
+        "statut": "publié",
+        "temps_de_lecture": "7 minutes"
+    },
+    {
+        "id": 5,
+        "date": "2024-11-07",
+        "image_url": "https://www.ncoa.org/_next/image/?url=https%3A%2F%2Fassets-us-01.kc-usercontent.com%3A443%2Fffacfe7d-10b6-0083-2632-604077fd4eca%2Fdcac0e47-2657-49c5-ae8f-ba2a2bc1c399%2FWhat-is-Nutrition-Counseling-iStock-1416417320-2023-2-Hero-1336x614.jpg&w=3840&q=75",
+        "image_fond" : "https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80",
+        "texte": "La longévité peut être influencée par de nombreux facteurs, notamment la génétique, l'environnement et le mode de vie, mais l'alimentation joue un rôle clé. Découvrez comment adapter votre alimentation avec des aliments entiers, des gras sains, et moins de sucres ajoutés pour maximiser votre longévité.",
+        "titre": "Les Régimes de Longévité : Comment Manger pour Vivre Plus Longtemps",
+        "auteur": "Myself",
+        "categorie": "Santé",
+        "tags": ["longévité", "régimes", "nutrition", "santé", "bien-être"],
+        "slug": "regimes-longevite",
+        "resume": "Explorez les régimes alimentaires liés à l'augmentation de l'espérance de vie et apprenez comment vos choix alimentaires peuvent influencer votre longévité.",
+        "statut": "publié",
+        "temps_de_lecture": "6 minutes"
+    }
+    
+]
