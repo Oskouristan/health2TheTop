@@ -18,32 +18,51 @@ body, html {
   
 /* Header */
 .health-tracker-header {
-    background-color: #1c1c1e; 
+    background-color: #0f0f0f; // Presque noir
     color: #fff;
     padding: 0.5rem 2rem;
     width: 100%;
-}
+  
+    .header-logo, .header-search, .header-icons {
+      flex: 1;
+    }
+  
+    .header-icons {
+      display: flex;
+      justify-content: space-around;
+      color: #fff;
+      font-size: 1.5rem;
 
-.header-logo, .header-search, .header-icons {
-    flex: 1;
-}
+      /* Ensure icons remain white, even if they're links */
+      a, i {
+        color: #fff;
+        text-decoration: none;
+      }
 
-.header-icons {
-    display: flex;
-    justify-content: space-around;
-    color: #fff;
-    font-size: 1.5rem;
-}
+      /* Icon color on hover */
+      a:hover, i:hover {
+        color: #b3b3b3; // Light gray on hover for a subtle effect
+      }
+    }
+  
+    .header-search .form-control {
+      background-color: #1c1c1e;
+      color: #fff;
+      border: none;
+      border-radius: 0.4rem;
 
-.header-search .form-control {
-    background-color: #2c2c2e;
-    color: #fff;
-    border: none;
-    border-radius: 0.4rem;
-}
+      /* Placeholder color */
+      &::placeholder {
+        color: #868686;
+      }
 
-.form-control::placeholder {
-    color: #868686;
+      /* Style on focus */
+      &:focus {
+        outline: none;
+        border: 1px solid #3a3a3c; // Dark gray border for focus
+        box-shadow: 0 0 6px #2e85ff; // Soft blue shadow on focus
+      }
+    }
 }
   
 /* Sidebar */
@@ -88,7 +107,10 @@ body, html {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+
 }
+
+
 
 .blog-card {
     background-color: #F5F5F5;
@@ -96,8 +118,8 @@ body, html {
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex-direction: column;
-    height: 200px; /* Hauteur fixe pour uniformiser toutes les cartes */
-    max-height: 200px; /* Hauteur maximale pour empêcher l’étirement */
+    height: 200px;
+    max-height: 200px;
     padding: 10px;
     transition: transform 0.3s;
 
@@ -108,7 +130,7 @@ body, html {
     &.double-width {
       grid-column: span 2;
       background-size: cover;
-      height: 300px; /* Hauteur fixe pour les cartes de double largeur également */
+      height: 300px;
     }
 }
   
@@ -117,74 +139,80 @@ body, html {
     justify-content: space-between;
     height: 100%;
     padding: 1rem;
+    display: flex;
+    align-items: flex-start; /* Default alignment for other items */
+
+    .read-more-button {
+        align-self: flex-end; /* Aligns the button to the right */
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+        color: #fff;
+        background-color: #0f0f0f; /* Dark gray background to match the theme */
+        border: 1px solid #3a3a3c; 
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s, color 0.2s;
+
+        &:hover {
+          background-color: #d4a055; /* Soft amber for a subtle highlight effect */
+          color: #fff;
+        }
+    }
 }
+
 
 .blog-title {
     font-size: 1.2rem;
-    color: #333;
+    color: #0f0f0f;
     font-weight: bold;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2; /* Limite le titre à 2 lignes */
+    -webkit-line-clamp: 2; /* Ensures the title occupies two lines */
+    height: 3.0rem; /* Fixed height for uniformity */
     margin-bottom: 0.5rem;
 }
 
 .blog-text {
     font-size: 0.9rem;
-    color: #555;
+    color: #0f0f0f;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2; /* Limite le texte à 2 lignes */
+    -webkit-line-clamp: 2; /* Ensures the description occupies two lines */
+    height: 2.8rem; /* Fixed height for uniformity */
     margin-bottom: 1rem;
 }
 
-.read-more-button {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
-    color: #007bff;
-    background-color: transparent;
-    border: 1px solid #007bff;
-    border-radius: 4px;
-    cursor: pointer;
-    align-self: flex-start;
-    transition: background-color 0.2s, color 0.2s;
-  
-    &:hover {
-      background-color: #007bff;
-      color: #fff;
-    }
-}
-  
 /* Footer */
 footer {
-    background-color: #1c1c1e;
+    background-color: #0f0f0f; // Presque noir
     color: #fff;
     padding: 0.5rem 1rem;
     text-align: center;
     margin-bottom: auto;
-}
   
-.footer-icons, .footer-links {
-    display: flex;
-    justify-content: center;
-    font-size: 0.9rem;
-}
-
-.footer-icons a, .footer-links a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 10px;
-    transition: background-color 0.2s, color 0.2s;
+    .footer-icons, .footer-links {
+      display: flex;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
   
-    &:hover {
-      background-color: #2c2c2e;
-      border-radius: 4px;
+    .footer-icons a, .footer-links a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: background-color 0.2s, color 0.2s;
+  
+      &:hover {
+        background-color: #2c2c2e;
+        border-radius: 4px;
+      }
     }
 }
+  
 
 /* Card Styles (Unified with .blog-card if possible) */
 .card {

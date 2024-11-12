@@ -1,0 +1,86 @@
+    // Page de connexion avec un fond image et un conteneur transparent
+    // Page de connexion avec un fond image et un conteneur transparent
+    .login-page {
+        background: url('../assets/images/background.png') no-repeat center center fixed; // Utilisation du bon chemin
+        background-size: cover;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    
+    .login-container {
+        background-color: rgba(15, 15, 15, 0.85); // Presque noir avec une légère transparence
+        border-radius: 10px;
+        padding: 2rem;
+        width: 90%;
+        max-width: 400px;
+        color: #fff;
+        text-align: center;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    
+        h2 {
+        margin-bottom: 0.5rem;
+        font-size: 1.8rem;
+        font-weight: bold;
+        }
+    
+        p {
+        margin: 0.5rem 0;
+        font-size: 1rem;
+        color: #ddd; // Texte plus clair pour le sous-titre
+        }
+    
+        .form-group {
+        margin-bottom: 1.5rem;
+    
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+    
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #2c2c2e;
+            color: #fff;
+        }
+        }
+    
+        .btn-primary {
+        width: 100%;
+        padding: 0.8rem;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    
+        &:hover {
+            background-color: #0056b3;
+        }
+        }
+    
+        .register-link {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: #ddd;
+    
+        a {
+            color: #007bff;
+            text-decoration: none;
+    
+            &:hover {
+            text-decoration: underline;
+            }
+        }
+        }
+    }
+    
