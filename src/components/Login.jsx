@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/login.scss';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const verify = () => {
+    // Logique de vérification simplifiée : retourne true pour l'instant
+    return true;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Logique de connexion à implémenter
-    console.log('Email:', email, 'Password:', password);
+    if (verify()) {
+      navigate('/user'); // Redirige vers la page UserPage si la vérification est réussie
+    } else {
+      alert('Incorrect email or password'); // Alerte en cas d'échec
+    }
   };
 
   return (
