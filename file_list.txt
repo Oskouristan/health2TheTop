@@ -24,12 +24,15 @@
 .\src\reportWebVitals.js
 .\src\setupTests.js
 .\src\assets\images
+.\src\assets\images\background.png
 .\src\assets\images\logo.png
 .\src\components\blog
 .\src\components\Footer.jsx
 .\src\components\Header.jsx
 .\src\components\Home.jsx
+.\src\components\Login.jsx
 .\src\components\blog\Article.jsx
 .\src\components\blog\BlogList.jsx
 .\src\data\articles.json
+.\src\styles\login.scss
 .\src\styles\style.scss
