@@ -1,5 +1,5 @@
 .user-page {
-    background-color: #1c1c1e; // Fond sombre pour toute la page
+    background-color: #1c1c1e;
     color: #ffffff;
     min-height: 100vh;
     display: flex;
@@ -13,36 +13,35 @@
       align-items: center;
       width: 100%;
       max-width: 1200px;
-      background-color: #0f0f0f; // Couleur sombre, presque noire
+      background-color: #0f0f0f;
       padding: 10px 20px;
       border-radius: 8px;
       margin-bottom: 20px;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  
-      .logo {
-        img {
-          height: 40px; // Ajuste la taille selon tes préférences
-        }
+      
+      .logo img {
+        height: 40px;
       }
-  
+      
       .categories {
         display: flex;
         gap: 20px;
-  
+        flex-direction: row; // S'assurer que les éléments sont alignés horizontalement
+      
         span {
           cursor: pointer;
           color: #ffffff;
           font-weight: 500;
           transition: color 0.3s;
-  
+      
           &:hover {
-            color: #d4a055; // Couleur ambre pour l'effet de survol
+            color: #d4a055;
           }
         }
       }
   
       .logout-btn {
-        background-color: #ff4d4f; // Rouge doux pour le bouton de déconnexion
+        background-color: #ff4d4f;
         color: #ffffff;
         border: none;
         padding: 8px 16px;
@@ -52,7 +51,7 @@
         transition: background-color 0.3s;
   
         &:hover {
-          background-color: #d9363e; // Rouge plus foncé pour l'effet de survol
+          background-color: #d9363e;
         }
       }
     }
@@ -60,7 +59,7 @@
     .profile-content {
       width: 100%;
       max-width: 1200px;
-      background-color: #2c2c2e; // Fond sombre pour le contenu
+      background-color: #2c2c2e;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
@@ -72,7 +71,27 @@
   
       p {
         font-size: 1rem;
-        color: #bbbbbb; // Gris clair pour le texte secondaire
+        color: #bbbbbb;
+      }
+  
+      .data-section {
+        background-color: #1c1c1e;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+          color: #d4a055;
+        }
+  
+        p {
+          font-size: 1rem;
+          color: #ffffff;
+          margin: 5px 0;
+        }
       }
     }
   }

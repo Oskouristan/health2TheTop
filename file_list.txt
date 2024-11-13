@@ -1,3 +1,4 @@
+.\database
 .\public
 .\src
 .\.gitignore
@@ -6,6 +7,8 @@
 .\package.json
 .\project_structure.py
 .\README.md
+.\database\schema.sql
+.\database\seed.sql
 .\public\index.html
 .\src\assets
 .\src\components
@@ -26,8 +29,10 @@
 .\src\components\Header.jsx
 .\src\components\Home.jsx
 .\src\components\Login.jsx
+.\src\components\UserPage.jsx
 .\src\components\blog\Article.jsx
 .\src\components\blog\BlogList.jsx
 .\src\data\articles.json
 .\src\styles\login.scss
 .\src\styles\style.scss
+.\src\styles\userpage.scss

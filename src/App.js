@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import UserPage from './components/UserPage';
+import Store from './components/store/Store';
 import './styles/style.scss';
 
 const MainApp = () => {
@@ -20,6 +21,7 @@ const MainApp = () => {
         <Route path="/article/:slug" element={<Article />} />
         <Route path="/login" element={<Login />} />
         <Route path="/user" element={<UserPage />} />
+        <Route path="/store" element={<Store />} />
       </Routes>
       {!isUserPage && <Footer />}
     </>

@@ -14,7 +14,9 @@ const Header = () => {
         <input type="text" className="form-control" placeholder="Search resources" style={{ width: '100%' }} />
       </div>
       <div className="header-icons d-flex justify-content-end" style={{ flex: 1 }}>
-        <i className="bi bi-bar-chart-line mx-3"></i>
+        <Link to="/store">
+          <i className="bi bi-shop mx-3"></i>
+        </Link>
         <i className="bi bi-chat-dots mx-3"></i>
         <Link to="/login">
           <i className="bi bi-person-circle mx-3"></i>
