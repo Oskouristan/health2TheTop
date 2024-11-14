@@ -7,6 +7,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "cors": "^2.8.5",
@@ -23,8 +24,8 @@
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run react\"",
-    "server": "cd server && nodemon server.js",
-    "react": "react-scripts start", 
+    "server": "cd server && npx nodemon server.js",
+    "react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -48,6 +49,7 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^9.1.0"
+    "concurrently": "^9.1.0",
+    "nodemon": "^2.0.22"
   }
 }

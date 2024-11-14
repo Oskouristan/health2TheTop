@@ -1,17 +1,22 @@
-// server.js
 const express = require('express');
 const { Pool } = require('pg');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
-// Charger les variables d'environnement
 dotenv.config();
 
 const app = express();
-app.use(cors()); // Autoriser les requêtes cross-origin
-app.use(express.json()); // Permettre le traitement des requêtes JSON
 
-// Configurer la connexion PostgreSQL
+// Configure CORS pour autoriser les requêtes provenant de http://localhost:3000
+app.use(cors({
+    origin: 'http://localhost:3000', // Autorise les requêtes depuis localhost:3000
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Méthodes HTTP autorisées
+    credentials: true // Permet l'envoi de cookies et des informations d'authentification
+}));
+
+app.use(express.json()); // Permet de traiter les requêtes JSON
+
+// Connexion à la base de données PostgreSQL
 const pool = new Pool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -20,34 +25,35 @@ const pool = new Pool({
     port: process.env.DB_PORT,
 });
 
-// Route pour récupérer les données de santé d'un utilisateur
-app.get('/api/health-data/:userId', async (req, res) => {
-    const { userId } = req.params;
+// Route de test
+app.get('/api/test', (req, res) => {
+    res.json({ message: 'API fonctionne' });
+});
+
+// Route de connexion
+app.post('/api/login', async (req, res) => {
+    const { email, password } = req.body;
     try {
-        const result = await pool.query('SELECT * FROM health_data WHERE user_id = $1', [userId]);
-        res.json(result.rows);
+        const result = await pool.query('SELECT id, password_hash FROM users WHERE email = $1', [email]);
+
+        if (result.rows.length === 0) {
+            return res.status(401).json({ error: 'Utilisateur non trouvé' });
+        }
+
+        const user = result.rows[0];
+        const isPasswordValid = (password === user.password_hash);
+
+        if (!isPasswordValid) {
+            return res.status(401).json({ error: 'Mot de passe incorrect' });
+        }
+
+        res.json({ userId: user.id });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: 'Erreur lors de la récupération des données' });
+        res.status(500).json({ error: 'Erreur lors de l\'authentification' });
     }
 });
 
-// Route pour ajouter des données de santé
-app.post('/api/health-data', async (req, res) => {
-    const { user_id, gender, height, age, weight } = req.body;
-    try {
-        const result = await pool.query(
-            'INSERT INTO health_data (user_id, gender, height, age, weight) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-            [user_id, gender, height, age, weight]
-        );
-        res.status(201).json(result.rows[0]);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Erreur lors de l\'insertion des données' });
-    }
-});
-
-// Démarrer le serveur
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Serveur lancé sur le port ${PORT}`);

@@ -1,5 +1,6 @@
 .\database
 .\public
+.\server
 .\src
 .\.gitignore
 .\file_list.txt
@@ -10,6 +11,10 @@
 .\database\schema.sql
 .\database\seed.sql
 .\public\index.html
+.\server\.env
+.\server\package-lock.json
+.\server\package.json
+.\server\server.js
 .\src\assets
 .\src\components
 .\src\data
@@ -24,7 +29,9 @@
 .\src\assets\images
 .\src\assets\images\background.png
 .\src\assets\images\logo.png
+.\src\assets\images\product.jpg
 .\src\components\blog
+.\src\components\store
 .\src\components\Footer.jsx
 .\src\components\Header.jsx
 .\src\components\Home.jsx
@@ -32,7 +39,9 @@
 .\src\components\UserPage.jsx
 .\src\components\blog\Article.jsx
 .\src\components\blog\BlogList.jsx
+.\src\components\store\Store.jsx
 .\src\data\articles.json
 .\src\styles\login.scss
+.\src\styles\store.scss
 .\src\styles\style.scss
 .\src\styles\userpage.scss

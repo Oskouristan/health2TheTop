@@ -1,34 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import logo from '../assets/images/logo.png';
 import '../styles/userpage.scss';
 
 const UserPage = () => {
   const navigate = useNavigate();
+  const { userId } = useParams(); // Récupère l'ID de l'utilisateur depuis l'URL
 
-  const [userData, setUserData] = useState(null); // Données utilisateur fictives
-  const [healthData, setHealthData] = useState(null); // Données de santé fictives
-  const [activityData, setActivityData] = useState([]); // Données d'activités fictives
+  const [userData, setUserData] = useState(null);
+  const [healthData, setHealthData] = useState(null);
+  const [activityData, setActivityData] = useState([]);
 
   useEffect(() => {
-    // Remplace par une requête réelle à la base de données
-    setUserData({
-      email: 'user@example.com',
-      createdAt: '2023-01-15',
-    });
+    // Appel à l'API pour récupérer les données utilisateur
+    const fetchData = async () => {
+      try {
+        const userResponse = await axios.get(`http://localhost:3001/api/users/${userId}`);
+        setUserData(userResponse.data);
 
-    setHealthData({
-      gender: 'M',
-      height: 180,
-      age: 30,
-      weight: 80,
-    });
+        const healthResponse = await axios.get(`http://localhost:3001/api/health-data/${userId}`);
+        setHealthData(healthResponse.data);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données:', error);
+      }
+    };
 
-    setActivityData([
-      { type: 'Running', duration: 30, calories: 300 },
-      { type: 'Cycling', duration: 45, calories: 400 },
-    ]);
-  }, []);
+    fetchData();
+  }, [userId]);
 
   const handleLogout = () => {
     navigate('/login');
@@ -54,7 +53,6 @@ const UserPage = () => {
         <h1>Bienvenue sur votre tableau de bord santé</h1>
         <p>Explorez vos statistiques et conseils personnalisés ici.</p>
 
-        {/* Section pour les Données Actuelles */}
         <div className="data-section">
           <h2>Données Actuelles</h2>
           <p>Email : {userData?.email}</p>
@@ -65,14 +63,12 @@ const UserPage = () => {
           <p>Poids : {healthData?.weight} kg</p>
         </div>
 
-        {/* Section pour les Objectifs */}
         <div className="data-section">
           <h2>Objectifs</h2>
           <p>Poids cible : 75 kg</p>
           <p>Durée d'entraînement hebdomadaire : 5 heures</p>
         </div>
 
-        {/* Section pour le Programme Sportif */}
         <div className="data-section">
           <h2>Programme Sportif</h2>
           {activityData.map((activity, index) => (
@@ -84,7 +80,6 @@ const UserPage = () => {
           ))}
         </div>
 
-        {/* Section pour le Health Score */}
         <div className="data-section">
           <h2>Health Score</h2>
           <p>Score actuel : 85/100</p>
@@ -96,4 +91,3 @@ const UserPage = () => {
 };
 
 export default UserPage;
-    
