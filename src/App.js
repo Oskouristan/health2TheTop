@@ -11,16 +11,16 @@ import './styles/style.scss';
 
 const MainApp = () => {
   const location = useLocation();
-  const isUserPage = location.pathname === '/user';
+  const isUserPage = location.pathname.startsWith('/user'); // Vérifie le chemin exact
 
   return (
     <>
       {!isUserPage && <Header />}
       <Routes>
+        <Route path="/user/:userId" element={<UserPage />} />
         <Route path="/" element={<BlogList />} />
         <Route path="/article/:slug" element={<Article />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/user" element={<UserPage />} />
         <Route path="/store" element={<Store />} />
       </Routes>
       {!isUserPage && <Footer />}

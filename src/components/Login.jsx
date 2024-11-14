@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/login.scss';
 
 const Login = () => {
@@ -7,17 +8,22 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const verify = () => {
-    // Logique de vérification simplifiée : retourne true pour l'instant
-    return true;
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (verify()) {
-      navigate('/user'); // Redirige vers la page UserPage si la vérification est réussie
-    } else {
-      alert('Incorrect email or password'); // Alerte en cas d'échec
+    try {
+      // Envoie les identifiants au backend pour vérification
+      const response = await axios.post('http://localhost:3001/api/login', { email, password });
+
+      // Vérifie si le backend renvoie un userId
+      const { userId } = response.data;
+      if (userId) {
+        navigate(`/user/${userId}`); // Redirige vers UserPage avec l'userId de la BD
+      } else {
+        alert('Incorrect email or password');
+      }
+    } catch (error) {
+      console.error('Erreur lors de la connexion :', error);
+      alert('Erreur lors de la connexion');
     }
   };
 

@@ -1,10 +1,10 @@
 // index.js
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css'; // Ton fichier CSS principal, si nécessaire
+import { createRoot } from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap
 import 'font-awesome/css/font-awesome.min.css'; // Import Font Awesome
 import App from './App';
 
-
-ReactDOM.render(<App />, document.getElementById('root'));
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
+root.render(<App />);

@@ -7,16 +7,14 @@ dotenv.config();
 
 const app = express();
 
-// Configure CORS pour autoriser les requêtes provenant de http://localhost:3000
 app.use(cors({
-    origin: 'http://localhost:3000', // Autorise les requêtes depuis localhost:3000
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Méthodes HTTP autorisées
-    credentials: true // Permet l'envoi de cookies et des informations d'authentification
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
 }));
 
-app.use(express.json()); // Permet de traiter les requêtes JSON
+app.use(express.json());
 
-// Connexion à la base de données PostgreSQL
 const pool = new Pool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -25,12 +23,18 @@ const pool = new Pool({
     port: process.env.DB_PORT,
 });
 
-// Route de test
+pool.connect((err) => {
+    if (err) {
+        console.error('Erreur de connexion à la base de données:', err);
+    } else {
+        console.log('Connecté à la base de données PostgreSQL');
+    }
+});
+
 app.get('/api/test', (req, res) => {
     res.json({ message: 'API fonctionne' });
 });
 
-// Route de connexion
 app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -49,8 +53,45 @@ app.post('/api/login', async (req, res) => {
 
         res.json({ userId: user.id });
     } catch (err) {
-        console.error(err);
+        console.error('Erreur lors de l\'authentification:', err);
         res.status(500).json({ error: 'Erreur lors de l\'authentification' });
+    }
+});
+
+app.get('/api/users/:userId', async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const result = await pool.query('SELECT id, email, created_at FROM users WHERE id = $1', [userId]);
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: 'Utilisateur non trouvé' });
+        }
+
+        const user = result.rows[0];
+        res.json(user);
+    } catch (err) {
+        console.error('Erreur lors de la récupération des données de l\'utilisateur:', err);
+        res.status(500).json({ error: 'Erreur lors de la récupération des données de l\'utilisateur' });
+    }
+});
+
+app.get('/api/health-data/:userId', async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const result = await pool.query(
+            'SELECT gender, height, age, weight, last_modified FROM health_data WHERE user_id = $1',
+            [userId]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: 'Données de santé non trouvées' });
+        }
+
+        const healthData = result.rows[0];
+        res.json(healthData);
+    } catch (err) {
+        console.error('Erreur lors de la récupération des données de santé:', err);
+        res.status(500).json({ error: 'Erreur lors de la récupération des données de santé' });
     }
 });
 
