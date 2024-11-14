@@ -7,6 +7,9 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import UserPage from './components/UserPage';
 import Store from './components/store/Store';
+import SignUp from './components/SignUp';
+import VerifyCode from './components/VerifyCode';
+
 import './styles/style.scss';
 
 const MainApp = () => {
@@ -22,6 +25,9 @@ const MainApp = () => {
         <Route path="/article/:slug" element={<Article />} />
         <Route path="/login" element={<Login />} />
         <Route path="/store" element={<Store />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/verify-code" element={<VerifyCode />} />
+
       </Routes>
       {!isUserPage && <Footer />}
     </>

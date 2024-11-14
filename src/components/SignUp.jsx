@@ -3,35 +3,32 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/login.scss';
 
-const Login = () => {
+const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      // Envoie les identifiants au backend pour vérification
-      const response = await axios.post('http://localhost:3001/api/login', { email, password });
+    if (password !== confirmPassword) {
+      alert("Les mots de passe ne correspondent pas.");
+      return;
+    }
 
-      // Vérifie si le backend renvoie un userId
-      const { userId } = response.data;
-      if (userId) {
-        navigate(`/user/${userId}`); // Redirige vers UserPage avec l'userId de la BD
-      } else {
-        alert('Incorrect email or password');
-      }
+    try {
+      await axios.post('http://localhost:3001/api/signup', { email, password });
+      navigate('/verify-code'); // Redirige vers la page de vérification du code
     } catch (error) {
-      console.error('Erreur lors de la connexion :', error);
-      alert('Erreur lors de la connexion');
+      console.error('Erreur lors de la création du compte :', error);
+      alert('Erreur lors de la création du compte');
     }
   };
 
   return (
     <div className="login-page">
       <div className="login-container">
-        <h2>SIGN IN</h2>
-        <p>Healthy Solutions for a Healthier World</p>
+        <h2>Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Email</label>
@@ -53,14 +50,21 @@ const Login = () => {
               className="form-control"
             />
           </div>
-          <button type="submit" className="btn btn-primary">Sign In</button>
+          <div className="form-group">
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              className="form-control"
+            />
+          </div>
+          <button type="submit" className="btn-primary">Sign Up</button>
         </form>
-        <p>
-          Doesn’t have an account? <span onClick={() => navigate('/signup')} className="signup-link">Sign up</span>
-        </p>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;

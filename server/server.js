@@ -95,6 +95,51 @@ app.get('/api/health-data/:userId', async (req, res) => {
     }
 });
 
+
+// Route pour créer un compte temporaire et envoyer un code de vérification
+app.post('/api/signup', async (req, res) => {
+    const { email, password } = req.body;
+    const verificationCode = Math.floor(100000 + Math.random() * 900000); // Génère un code à 6 chiffres
+  
+    try {
+      // Insère l'utilisateur temporairement dans la table et stocke le code
+      await pool.query('INSERT INTO temp_users (email, password_hash, verification_code) VALUES ($1, $2, $3)', 
+                       [email, password, verificationCode]);
+  
+      // Envoie le code par email ici (utilise un service comme nodemailer)
+      console.log(`Code de vérification pour ${email}: ${verificationCode}`); // Pour tester
+  
+      res.json({ message: 'Code de vérification envoyé' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erreur lors de la création du compte' });
+    }
+});
+  
+// Route pour vérifier le code et activer le compte
+app.post('/api/verify-code', async (req, res) => {
+    const { code } = req.body;
+    try {
+      // Vérifie le code dans la table temp_users
+      const result = await pool.query('SELECT * FROM temp_users WHERE verification_code = $1', [code]);
+      
+      if (result.rows.length === 0) {
+        return res.json({ success: false });
+      }
+  
+      // Déplace l'utilisateur vérifié dans la table users
+      const user = result.rows[0];
+      await pool.query('INSERT INTO users (email, password_hash) VALUES ($1, $2)', [user.email, user.password_hash]);
+      await pool.query('DELETE FROM temp_users WHERE verification_code = $1', [code]); // Supprime l'utilisateur temporaire
+  
+      res.json({ success: true });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erreur lors de la vérification du code' });
+    }
+});  
+
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Serveur lancé sur le port ${PORT}`);

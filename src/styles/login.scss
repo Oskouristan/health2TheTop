@@ -1,86 +1,95 @@
-    // Page de connexion avec un fond image et un conteneur transparent
-    // Page de connexion avec un fond image et un conteneur transparent
-    .login-page {
-        background: url('../assets/images/background.png') no-repeat center center fixed; // Utilisation du bon chemin
-        background-size: cover;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.login-page {
+    background: url('../assets/images/background.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
     
-    
-    .login-container {
-        background-color: rgba(15, 15, 15, 0.85); // Presque noir avec une légère transparence
-        border-radius: 10px;
-        padding: 2rem;
-        width: 90%;
-        max-width: 400px;
-        color: #fff;
-        text-align: center;
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-    
-        h2 {
+.login-container {
+    background-color: rgba(15, 15, 15, 0.85); // Presque noir avec une légère transparence
+    border-radius: 10px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  
+    h2 {
         margin-bottom: 0.5rem;
         font-size: 1.8rem;
         font-weight: bold;
-        }
+    }
     
-        p {
+    p {
         margin: 0.5rem 0;
         font-size: 1rem;
         color: #ddd; // Texte plus clair pour le sous-titre
-        }
+    }
     
-        .form-group {
+    .form-group {
         margin-bottom: 1.5rem;
-    
+        
         label {
             display: block;
             font-weight: bold;
             margin-bottom: 0.5rem;
             color: #fff;
         }
-    
+      
         .form-control {
             width: 100%;
             padding: 0.8rem;
             border-radius: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid #3a3a3c;
             background-color: #2c2c2e;
             color: #fff;
+            
+            &::placeholder {
+                color: #868686;
+            }
+            
+            &:focus {
+                outline: none;
+                border: 1px solid #3a3a3c;
+                box-shadow: 0 0 6px #2e85ff;
+            }
         }
-        }
+    }
     
-        .btn-primary {
+    .btn-primary {
         width: 100%;
         padding: 0.8rem;
-        background-color: #007bff;
+        background-color: #0f0f0f; /* Dark gray */
         color: #fff;
         border: none;
         border-radius: 5px;
         font-size: 1rem;
         cursor: pointer;
-        transition: background-color 0.3s;
-    
+        transition: background-color 0.2s, color 0.2s;
+        
         &:hover {
-            background-color: #0056b3;
-        }
-        }
-    
-        .register-link {
-        margin-top: 1rem;
-        font-size: 0.9rem;
-        color: #ddd;
-    
-        a {
-            color: #007bff;
-            text-decoration: none;
-    
-            &:hover {
-            text-decoration: underline;
-            }
-        }
+            background-color: #d4a055; /* Soft amber for a subtle highlight effect */
+            color: #fff;
         }
     }
     
+    .register-link, .signup-link {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: #d4a055; /* Same amber color as hover effect */
+        cursor: pointer;
+        text-decoration: underline;
+        
+        a, &:hover {
+            color: #d4a055;
+        }
+        
+        a:hover, &:hover {
+            text-decoration: underline;
+            color: #b38238; /* Slightly darker amber for hover effect */
+        }
+    }
+}
