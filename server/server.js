@@ -2,6 +2,7 @@ const express = require('express');
 const { Pool } = require('pg');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const nodemailer = require('nodemailer'); // Import Nodemailer
 
 dotenv.config();
 
@@ -31,10 +32,23 @@ pool.connect((err) => {
     }
 });
 
+// Configuration du transporteur d’e-mails Nodemailer
+const transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
+    secure: false, // Utilisez true pour le port 465, sinon false pour les autres ports
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+    },
+});
+
+// Route de test pour vérifier si l'API fonctionne
 app.get('/api/test', (req, res) => {
     res.json({ message: 'API fonctionne' });
 });
 
+// Route de connexion (authentification de l'utilisateur)
 app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -58,6 +72,7 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
+// Route pour récupérer les informations d'un utilisateur par son ID
 app.get('/api/users/:userId', async (req, res) => {
     const { userId } = req.params;
     try {
@@ -75,6 +90,7 @@ app.get('/api/users/:userId', async (req, res) => {
     }
 });
 
+// Route pour récupérer les données de santé d'un utilisateur par son ID
 app.get('/api/health-data/:userId', async (req, res) => {
     const { userId } = req.params;
     try {
@@ -95,7 +111,6 @@ app.get('/api/health-data/:userId', async (req, res) => {
     }
 });
 
-
 // Route pour créer un compte temporaire et envoyer un code de vérification
 app.post('/api/signup', async (req, res) => {
     const { email, password } = req.body;
@@ -106,9 +121,15 @@ app.post('/api/signup', async (req, res) => {
       await pool.query('INSERT INTO temp_users (email, password_hash, verification_code) VALUES ($1, $2, $3)', 
                        [email, password, verificationCode]);
   
-      // Envoie le code par email ici (utilise un service comme nodemailer)
-      console.log(`Code de vérification pour ${email}: ${verificationCode}`); // Pour tester
+      // Envoie le code par e-mail
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: 'Code de vérification de votre compte',
+        text: `Votre code de vérification est : ${verificationCode}`,
+      };
   
+      await transporter.sendMail(mailOptions);
       res.json({ message: 'Code de vérification envoyé' });
     } catch (error) {
       console.error(error);
@@ -139,6 +160,24 @@ app.post('/api/verify-code', async (req, res) => {
     }
 });  
 
+// Route de test pour envoyer un e-mail
+app.get('/api/test-email', async (req, res) => {
+    const mailOptions = {
+      from: process.env.EMAIL_USER, // Adresse e-mail de l'expéditeur
+      to: 'mdohdv@gmail.com', // Remplacez par l'adresse e-mail de destination
+      subject: 'Test d\'envoi d\'e-mail avec Nodemailer',
+      text: 'Bonjour ! Ceci est un e-mail de test envoyé depuis le serveur Node.js avec Nodemailer.',
+    };
+  
+    try {
+      // Envoie de l'e-mail
+      await transporter.sendMail(mailOptions);
+      res.json({ message: 'E-mail envoyé avec succès !' });
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi de l\'e-mail :', error);
+      res.status(500).json({ error: 'Erreur lors de l\'envoi de l\'e-mail' });
+    }
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
